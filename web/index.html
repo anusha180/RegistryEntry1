@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Registry Entry</title>
+        <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/registry.js"></script>
+<!--  --link href="css/registry.css" rel="stylesheet"--!>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+<link href="css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+        <!-- BOOTSTRAP STYLES-->
+        <link href="css/bootstrap.css" rel="stylesheet" />
+        <!-- FONTAWESOME STYLES-->
+        <link href="css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+        <link href="css/custom.css" rel="stylesheet" />
+        <!-- GOOGLE FONTS-->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                       <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+                <div style="color: white" align="center-left";
+                     padding: 15px 50px 5px 50px;
+                     float: right;
+                     font-size: 16px;">
+				</div>
+            </nav>   
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        <li class="text-center">
+                           <img src="img/find_user.png" class="user-image img-responsive"/>
+                        </li>
+                        
+                        <li>
+                            <a id="anchAddEntry"  href="#"  ><i class="fa fa-plus-square fa-3x"></i> Add Entry</a>
+                        </li>
+
+                        <li>
+                            <a id="anchSearchEntry"  href="#"><i class="fa fa-search fa-3x"></i> Search Entry</a>
+                        </li>
+                        
+                        <li>
+                            <a id="anchUpdateEntry"  href="#"><i class="fa fa-pencil-square-o fa-3x"></i> Update Entry</a>
+                        </li>
+                        <li  >
+                            <a id="anchDeleteEntry"  href="#"><i class="fa fa-trash-o fa-3x"></i> Delete Entry</a>
+                        </li>	
+
+                    </ul>
+
+                </div>
+
+            </nav>  
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper" >
+                <div id="page-inner">
+                    <div class="row">
+
+                    </div>
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <!-- Form Elements -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 id="htagAdd">Add Registry Entry </h3>
+                                    <h3 id="htagSearch">Search Registry Entry </h3>
+                                    <h3 id ="htagUpdate">Update Registry</h3>
+                                    <h3 id ="htagDelete">Delete Registry</h3>
+                                </div>
+                                <div id="dvAdd"  class="panel-body">
+                                    
+                                    <form role="form">
+                                        <div id="regentrymsg1"></div>
+                                        <div class="form-group">
+                                            <label>Scope</label>
+                                            <input class="form-control" id="regentryscope" type="text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" id="regentryname" type="text" placeholder="Example:com.express_scripts.services" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value</label>
+                                            <input class="form-control" id="regentryvalue" type="text" placeholder="Example:ref_product_app_dev1"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="" id="regentryconfid">Confidential
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <br/>
+                                        <button class="btn btn-default" type="button" id="regentryaddbtn">Add</button>
+                                        <button  class="btn btn-default">Cancel</button>
+                                        
+
+                                    </form>                            
+                                </div>
+                                <div  id="dvSearch" class="panel-body">
+                                    
+                                    <form role="form">
+                                        <div id="regentrymsg2"></div>
+                                        <div class="form-group">
+                                            <label>Scope</label>
+                                            <input class="form-control" id="regentryscope2"  />
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" id="regentryname2" placeholder="Example:com.express_scripts.services" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value</label>
+                                            <input class="form-control" id="regentryvalue2" placeholder="Example:ref_product_app_dev1"/>
+                                        </div
+										
+
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="regentryconfid2" value="" />Confidential
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="useinheritance" value=""/>Use Inheritance
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+												
+												
+                                                    <input type="checkbox" id="casesensitive" value=""/>Case Sensitive
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <button type="submit" id="regentrysearchbtn" class="btn btn-default">Search </button>
+                                        <button type="reset" class="btn btn-primary">Reset </button>
+                                   <div id="dispdiv" class="col-md-offset-1 col-md-10"></div>
+                                    </form>
+                                    
+                                    
+                                </div>
+
+                                
+                                <div id="dvUpdate"  class="panel-body">
+
+                     <form role="form">
+                        <div id="regentrymsg3"></div>
+                                        <div class="form-group">
+                                            <label>ID</label>
+                                            <input class="form-control" name="id" id="regentryidx"/>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Scope</label>
+                                            <input class="form-control" name="scope" id="regentryscopex"/>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" name="name" id="regentrynamex" placeholder="Example:com.express_scripts.services" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Value</label>
+                                            <input class="form-control" name="value" id="regentryvaluex"placeholder="Example:ref_product_app_dev1"/>
+                                        </div>
+        
+                                        <div class="form-group">
+                                                <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="checkbox" id="regentryconfidx" value="" />Confidential
+                                                </label>
+                                            </div>
+                                        </div>
+
+                               
+                                        <button type="submit" id="regentryupdatebtn">Update</button>
+                                        <button  class="btn btn-default">Cancel</button>
+
+                                    </form>                         
+                                </div>
+
+                                <div id="dvDelete"  class="panel-body">
+                                  
+                                    <form role="form">
+                                        <div id="regentrymsg4"></div>
+                                        <div class="form-group" >
+                                            <label>ID</label>
+                                            <input  type="text" id="reid" name="id" class="form-control"  />
+
+                                        </div>
+
+
+                                        <br/>
+                                        <button type="submit" id="regentrydelbtn1">Delete</button>
+                                        <button  class="btn btn-default">Cancel</button>
+                                    </form>                            
+                                </div>
+
+                            </div>
+                            <!-- End Form Elements -->
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <!-- /. ROW  -->
+
+                    <!-- /. ROW  -->
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <!-- script src="js/jquery-1.10.2.js"></script> -->
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- METISMENU SCRIPTS -->
+        <!-- <script src="js/jquery.metisMenu.js"></script> -->
+        <!-- CUSTOM SCRIPTS -->
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/registry.js"></script>
+        
+        
+        
+        <script>
+
+		
+            $("#dvSearch").hide();
+            $("#htagSearch").hide();
+            $("#dvAdd").show();
+            $("#htagAdd").show();
+            $("#htagUpdate").hide();
+            $("#dvUpdate").hide();
+            $("#htagDelete").hide();
+            $("#dvDelete").hide();
+
+            $("#anchAddEntry").click(function () {
+                $("#dvAdd").show();
+                $("#htagAdd").show();
+                $("#dvSearch").hide();
+                $("#htagSearch").hide();
+                $("#htagUpdate").hide();
+            $("#dvUpdate").hide();
+                $("#htagDelete").hide();
+                $("#dvDelete").hide();
+            });
+
+            $("#anchSearchEntry").click(function () {
+                $("#dvAdd").hide();
+                $("#htagAdd").hide();
+                $("#dvSearch").show();
+                $("#htagSearch").show();
+                $("#htagUpdate").hide();
+            $("#dvUpdate").hide();
+                $("#htagDelete").hide();
+                $("#dvDelete").hide();
+            });
+            
+                        $("#anchDeleteEntry").click(function () {
+                $("#dvAdd").hide();
+                $("#htagAdd").hide();
+                $("#dvSearch").hide();
+                $("#htagSearch").hide();
+                $("#htagDelete").show();
+                $("#dvDelete").show();
+                $("#htagUpdate").hide();
+            $("#dvUpdate").hide();
+            });
+            
+            
+            $("#anchUpdateEntry").click(function () {
+                $("#dvAdd").hide();
+                $("#htagAdd").hide();
+                $("#dvSearch").hide();
+                $("#htagSearch").hide();
+                $("#htagDelete").hide();
+                $("#dvDelete").hide();
+                $("#htagUpdate").show();
+            $("#dvUpdate").show();
+            });
+
+
+
+        </script>
+        
+        <script src="https://fb.me/react-15.0.1.js"></script>
+	<script src="https://fb.me/react-dom-15.0.1.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+	<script type="text/babel">
+		class EntryEditBtn extends React.Component {
+  			render() {
+    			return <button type="button" className="btn btn-default" onclick="editRegistryEntry({this.props.id})">
+                          <span className="glyphicon glyphicon-edit" aria-label="Edit"></span>
+                       </button>
+  			}
+		}
+
+		class EntryDelBtn extends React.Component {
+  			render() {
+    			return <button type="button" className="btn btn-default" onclick="delRegistryEntry({this.props.id})">
+                          <span className="glyphicon glyphicon-trash" aria-label="Edit"></span>
+                       </button>
+  			}
+		}
+
+		class EntryDisplayRow extends React.Component {
+  			render() {
+    			return <tr>
+						  <td className="ht3">{this.props.id}</td>
+						  <td>{this.props.scope}</td>
+						  <td>{this.props.name}</td>
+						  <td>{this.props.value}</td>
+						  <td>{this.props.confidential}</td>
+						  <td><EntryEditBtn id="{this.props.id}" /></td>
+						  <td><EntryDelBtn id="{this.props.id}" /></td>
+					   </tr>
+  			}
+		}
+
+		class EntryTableHead extends React.Component {
+  			render() {
+    			return <tr>
+						  <th width="6%" className="left ht3 back1">Id</th>
+						  <th width="20%" className="left back1">Scope</th>
+						  <th width="30%" className="left back1">Name</th>
+						  <th width="10%" className="left back1">Value</th>
+						  <th width="14%" className="left back1">Confidential</th>
+						  <th width="10%" className="left back1">Edit</th>
+						  <th width="10%" className="left back1">Delete</th>
+					   </tr>
+  			}
+		}
+
+		class EntryDisplayTable extends React.Component {
+			render() {
+				return <table width="100%" className="table table-striped">
+                          <EntryTableHead />
+						  {this.props.tbdata.map(function(tbcell){
+						      var confd = "false";
+
+							  if (tbcell.confidential === 1) {
+								 confd = "true";
+							  }
+
+							  return <EntryDisplayRow id={tbcell.id} scope={tbcell.scope} name={tbcell.name} value={tbcell.value} confidential={confd} />
+						  })}
+					   </table>
+			}
+		}
+                
+                
+
+		var EntrySearchBtn = React.createClass({
+            findRegistryEntry: function(){
+			   var chkval1 = "false";
+
+    		   if ($("#regentryconfid2").is(':checked')) {
+        		  chkval1 = "true";
+                          console.log(chkval1);
+    		   }
+
+    		   var chkval2 = "false";
+
+    		   if ($("#useinheritance").is(':checked')) {
+        		  chkval2 = "true";
+    		   }
+
+    		   var chkval3 = "false";
+
+    		   if ($("#casesensitive").is(':checked')) {
+        		  chkval3 = "true";
+    		   }
+
+			   var myentry = {"scope": $("#regentryscope2").val(),
+        		  "name": $("#regentryname2").val(),
+        		  "value": $("#regentryvalue2").val(),
+        		  "confidential": chkval1,
+        		  "useInheritance": chkval2,
+        		  "matchCase": chkval3
+    		   };
+
+    		   $("#regentryscope2").val("");
+    		   $("#regentryname2").val("");
+    		   $("#regentryvalue2").val("");
+
+			   var tmpstr = JSON.stringify(myentry);
+
+			   $("#dispdiv").html(tmpstr);
+
+			   $.post("findRegistryEntry",
+            	  {
+                	myentry: tmpstr
+            	  },
+
+    			  function (data, status) {
+        			var resp = JSON.parse(data);
+
+        			var tblData = resp.results;
+
+        			if (resp.resultmsg.length == 0) {
+            			ReactDOM.render(
+  							<EntryDisplayTable tbdata={tblData} />,
+  							document.getElementById('dispdiv')
+						);
+        			} else {
+            			$("#regentrymsg2").show();
+
+            			$("#regentrymsg2").html(resp.resultmsg);
+        			}
+    			  });
+            },
+
+            render: function(){
+               return (
+                  <button type="button" onClick={this.findRegistryEntry}>Search</button>
+               );
+            }
+         });
+
+         ReactDOM.render(<EntrySearchBtn />, document.getElementById('regentrysearchbtn'));
+         
+        var EntryAddBtn = React.createClass({
+            addRegistryEntry: function(){
+			   var chkval = "false";
+
+        if ($("#regentryconfid").is(':checked')) {
+            chkval = "true";
+            console.log(chkval);
+        }
+
+        var crtentry = {
+            "scope": $("#regentryscope").val(),
+            "name": $("#regentryname").val(),
+            "value": $("#regentryvalue").val(),
+            "confidential": chkval
+        };
+
+        $("#regentryscope").val("");
+        $("#regentryname").val("");
+        $("#regentryvalue").val("");
+
+        $.post("addRegistryEntry",
+                {
+                    crtentry: JSON.stringify(crtentry)
+                },
+                function (data, status) {
+                    var resp = JSON.parse(data);
+                    console.log("add");
+                    $("#regentrymsg1").show();
+
+                    if (resp.regentid > 0) {
+                        $("#regentrymsg1").html("Entry is added successfully.");
+                    } else {
+                        $("#regentrymsg1").html("<span class=\"errorFont\">" + resp.errormsg + "</span>");
+                    }
+                });
+            },
+
+            render: function(){
+               return (
+                  <button type="button" onClick={this.addRegistryEntry}>Add</button>
+               );
+            }
+         });
+
+         ReactDOM.render(<EntryAddBtn />, document.getElementById('regentryaddbtn'));
+         
+        
+    var EntryDeleteBtn = React.createClass({
+            delRegistryEntry: function(){
+			  
+      var dentry = {
+            "reid": $("#reid").val()
+        };
+
+        $("#reid").val("");
+        
+        
+        $.post("delRegistryEntry",
+                {
+                    dentry:JSON.stringify(dentry)
+                },
+                function (data, status) {
+                    var resp = JSON.parse(data);
+                    console.log("delete");
+                    $("#regentrymsg4").show();
+
+                    if (resp.regentid > 0) {
+                        $("#regentrymsg4").html("Entry is deleted successfully.");
+                    } else {
+                        $("#regentrymsg4").html("<span class=\"errorFont\">" + resp.errormsg + "</span>");
+                    }
+                });
+            },
+
+            render: function(){
+               return (
+                  <button type="button" onClick={this.delRegistryEntry}>Delete</button>
+               );
+            }
+         });
+
+         ReactDOM.render(<EntryDeleteBtn />, document.getElementById('regentrydelbtn1'));
+         
+        var EntryUpdateBtn = React.createClass({
+            updateEntry: function(){
+			   var chkvalupdate = "false";
+
+        if ($("#regentryconfidx").is(':checked')) {
+            chkvalupdate = "true";
+        }
+
+        var updatentry = {
+            "id": $("#regentryidx").val(),
+            "scope": $("#regentryscopex").val(),
+            "name": $("#regentrynamex").val(),
+            "value": $("#regentryvaluex").val(),
+            "confidential": chkvalupdate
+        };
+        $("#regentryidx").val("");
+        $("#regentryscopex").val("");
+        $("#regentrynamex").val("");
+        $("#regentryvaluex").val("");
+
+        $.post("updateEntry",
+                {
+                    updatentry: JSON.stringify(updatentry)   
+                },
+                function (data, status) {
+                    var resp = JSON.parse(data);
+                    console.log("update");
+//                    $("#regentrymsg3").show();
+//                    if(!resp)
+//                        $("#regentrymsg3").html("No update.");
+//                    else if (resp.errormsg.length==0) {
+//            			 $("#regentrymsg3").html("Entry is updated successfully.");
+//        			} else {
+//            			//$("#regentrymsg3").html("<span class=\"errorFont\">" + resp.errormsg + "</span>");
+//                                
+//            			$("#regentrymsg3").html(resp.errormsg);
+//        			}
+                    
+                    $("#regentrymsg3").show();
+                    if((documentFragment!==null) && documentFragment.hasOwnProperty('resp.regentid'))
+                    { 
+                        if (resp.regentid > 0) {
+                        $("#regentrymsg3").html("Entry is updated successfully.");
+                    } else {
+                        $("#regentrymsg3").html("<span class=\"errorFont\">" + resp.errormsg + "</span>");
+                    }
+                }
+                });
+            },
+
+            render: function(){
+               return (
+                  <button type="button" onClick={this.updateEntry}>Update</button>     
+               );
+            }
+         });
+
+         ReactDOM.render(<EntryUpdateBtn />, document.getElementById('regentryupdatebtn'));
+    
+    </script>
+    </body>
+</html>
